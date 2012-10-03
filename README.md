@@ -3,7 +3,9 @@ A* for Lua
 
 A clean, simple implementation of the A* pathfinding algorithm for Lua.
 
-This implementation has no dependencies and has a simple interface. It takes a table of nodes, a start and end point and a "valid neighbor" function which makes it easy to adapt the module's behavior. 
+This implementation has no dependencies and has a simple interface. It takes a table of nodes, a start and end point and a "valid neighbor" function which makes it easy to adapt the module's behavior, especially in circumstances where valid paths would frequently change.
+
+The module automatically caches paths which saves CPU time for frequently accessed start and end nodes. Cached paths can be ignored by setting the appropriate parameter in the main function. Cached paths can be purged with the `clear_cached_paths ()` function.
 
 ## Usage example ##
 
