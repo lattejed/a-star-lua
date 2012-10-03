@@ -31,7 +31,6 @@ module ( "astar", package.seeall )
 
 local INF = 1/0
 local cachedPaths = nil
-local nodes = nil
 
 ----------------------------------------------------------------
 -- local functions
