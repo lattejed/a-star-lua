@@ -161,7 +161,7 @@ end
 
 function clear_cached_paths ()
 
-	cachedPaths = {}
+	cachedPaths = nil
 end
 
 function distance ( x1, y1, x2, y2 )
