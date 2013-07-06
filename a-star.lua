@@ -91,7 +91,8 @@ function remove_node ( set, theNode )
 
 	for i, node in ipairs ( set ) do
 		if node == theNode then 
-			set [ i ] = nil
+			set [ i ] = set [ #set ]
+			set [ #set ] = nil
 			break
 		end
 	end	
