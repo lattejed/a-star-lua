@@ -115,31 +115,31 @@ end
 function a_star ( start, goal, nodes, valid_node_func )
 
 	local closedset = {}
-    local openset = { start }
-    local came_from = {}
- 
- 	if valid_node_func then is_valid_node = valid_node_func end
- 
- 	local g_score, f_score = {}, {}
-    g_score [ start ] = 0
-    f_score [ start ] = g_score [ start ] + heuristic_cost_estimate ( start, goal )
- 
-    while #openset > 0 do
-    
-    	local current = lowest_f_score ( openset, f_score )
-        if current == goal then
-        	local path = unwind_path ( {}, came_from, goal )
-        	table.insert ( path, goal )
+	local openset = { start }
+	local came_from = {}
+
+	if valid_node_func then is_valid_node = valid_node_func end
+
+	local g_score, f_score = {}, {}
+	g_score [ start ] = 0
+	f_score [ start ] = g_score [ start ] + heuristic_cost_estimate ( start, goal )
+
+	while #openset > 0 do
+	
+		local current = lowest_f_score ( openset, f_score )
+		if current == goal then
+			local path = unwind_path ( {}, came_from, goal )
+			table.insert ( path, goal )
 			return path
-        end
- 
- 		remove_node ( openset, current )		
- 		table.insert ( closedset, current )
- 		
- 		local neighbors = neighbor_nodes ( current, nodes )
-        for _, neighbor in ipairs ( neighbors ) do 
-            if not_in ( closedset, neighbor ) then
-            
+		end
+
+		remove_node ( openset, current )		
+		table.insert ( closedset, current )
+		
+		local neighbors = neighbor_nodes ( current, nodes )
+		for _, neighbor in ipairs ( neighbors ) do 
+			if not_in ( closedset, neighbor ) then
+			
 				local tentative_g_score = g_score [ current ] + dist_between ( current, neighbor )
 				 
 				if not_in ( openset, neighbor ) or tentative_g_score < g_score [ neighbor ] then 
