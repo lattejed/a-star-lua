@@ -178,6 +178,11 @@ function path ( start, goal, nodes, ignore_cache, valid_node_func )
 	elseif cachedPaths [ start ] [ goal ] and not ignore_cache then
 		return cachedPaths [ start ] [ goal ]
 	end
-	
-	return a_star ( start, goal, nodes, valid_node_func )
+
+      local resPath = a_star ( start, goal, nodes, valid_node_func )
+      if not cachedPaths [ start ] [ goal ] and not ignore_cache then
+              cachedPaths [ start ] [ goal ] = resPath
+      end
+
+	return resPath
 end
